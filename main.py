@@ -67,3 +67,15 @@ def create_payment_session():
 @app.get("/health")
 def health():
     return {"status": "API Online", "frontend_target": frontend_url}
+import os
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/api/v1/config/public")
+def public_config():
+    return {
+        "stripePublishableKey": os.getenv("STRIPE_PUBLISHABLE_KEY", ""),
+        "maxUploadBytes": 5 * 1024 * 1024,
+        "allowedImageTypes": ["image/jpeg", "image/png", "image/webp"],
+    }
