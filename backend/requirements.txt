@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+replicate
+stripe
+boto3
+celery
+redis
+sqlalchemy
+alembic
+psycopg2-binary
+python-dotenv
