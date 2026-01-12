@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 import stripe
 import os
+from .config import settings
 
 app = FastAPI()
 
@@ -13,7 +14,7 @@ async def create_payment(request: Request):
 @app.get("/api/v1/config/public")
 async def public_config():
     return {
-        "stripePublishableKey": os.getenv("STRIPE_PUBLISHABLE_KEY", ""),
+        "stripePublishableKey": settings.STRIPE_PUBLISHABLE_KEY or "",
         "maxUploadBytes": 5 * 1024 * 1024,
         "allowedImageTypes": ["image/jpeg", "image/png", "image/webp"],
     }
